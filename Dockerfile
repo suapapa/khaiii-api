@@ -28,7 +28,7 @@ RUN make install
 
 # ---
 
-FROM golang:1.24 AS go-builder
+FROM golang:1.27 AS go-builder
 
 COPY --from=khaiii-builder /usr_local/ /usr/local/
 RUN ldconfig
