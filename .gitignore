@@ -1,0 +1,40 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/khaiii-api
+/main
+
+# Coverage
+*.coverprofile
+coverage.out
+
+# Dependencies
+vendor/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+token
+/secret/
+
+# Swag / generated (keep docs/ if committed intentionally)
+*.swp
+*.swo
+*~
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Python (if any local tooling)
+__pycache__/
+*.py[cod]
+.venv/
