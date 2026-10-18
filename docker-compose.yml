@@ -1,0 +1,14 @@
+services:
+  khaiii-api:
+    build: .
+    image: khaiii-api:local
+    # image: ghcr.io/suapapa/khaiii-api:latest
+    ports:
+      - "${KHAIII_PORT:-8082}:8080"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      KHAIII_APIKEY: ${KHAIII_APIKEY:-}
+      ROOT_PATH: ${ROOT_PATH:-/}
+    restart: unless-stopped

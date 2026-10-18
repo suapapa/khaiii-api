@@ -7,7 +7,6 @@ package main
 
 import (
 	"cmp"
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -28,15 +27,12 @@ var k *khaiii.Khaiii
 // @BasePath		/v1
 // @schemes		http
 func main() {
-	var secret string
-	secretB, err := os.ReadFile("/secret/token")
-	if err != nil {
-		fmt.Printf("WARN: failed to read secret: %v\n", err)
-	} else {
-		log.Println("using secret from file")
-		secret = strings.TrimSpace(string(secretB))
+	secret := strings.TrimSpace(os.Getenv("KHAIII_APIKEY"))
+	if secret != "" {
+		log.Println("using KHAIII_APIKEY from environment")
 	}
 
+	var err error
 	k, err = khaiii.New(nil)
 	if err != nil {
 		log.Fatalf("failed to open khaiii: %v", err)

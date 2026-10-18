@@ -32,19 +32,30 @@ khaiii C 라이브러리를 Go로 감싼 REST API (`/v1`) + Go 클라이언트 �
 
 ## 인증·환경
 
-- 서버는 현재 `/secret/token` 파일에서 시크릿을 읽습니다 (`main.go`).
-- 클라이언트 예제는 `KHAIII_API_TOKEN` env를 사용합니다.
-- `ROOT_PATH`로 Gin root path를 바꿀 수 있습니다 (리버스 프록시용).
+| 변수 | 용도 |
+|------|------|
+| `KHAIII_APIKEY` | Bearer 토큰 (서버·클라이언트 예제 공통). 비어 있으면 인증 비활성 |
+| `ROOT_PATH` | Gin root path (리버스 프록시용) |
+| `KHAIII_PORT` | compose 호스트 포트 (기본 `8082`) |
+
+로컬 실행:
+
+```sh
+cp .env.example .env   # KHAIII_APIKEY 설정
+docker compose up --build
+```
 
 ## 코딩 규칙
 
 - CGO 바인딩(`internal/c_khaiii`) 변경은 최소로; API 표면은 `pkg/`와 HTTP 핸들러에서 확장.
-- 시크릿·토큰 파일을 커밋하지 말 것 (`.gitignore`의 `token`, `.env`).
+- API 키는 env/`docker-compose`로만; `/secret/token` 파일 경로를 되살리지 말 것.
+- `.env`를 커밋하지 말 것.
 - 공개 엔드포인트/스키마 변경 시 `swag init` + README 예제 출력을 맞출 것.
 
 ## 하지 말 것
 
 - 호스트에 khaiii 없이 CGO 오류를 “코드 버그”로 단정하고 대규모 리팩터
+- `.env` 실비밀 커밋
 - 사용자 요청 없이 커밋·푸시
 
 ## 커밋

@@ -15,7 +15,7 @@ import (
 var (
 	// khaiiiAnalyzeEP = "http://homin.dev/khaiii-api/v1/analyze"
 	khaiiiAnalyzeEP = "http://localhost:8082/v1/analyze"
-	secret          = cmp.Or(os.Getenv("KHAIII_API_TOKEN"), "")
+	secret          = cmp.Or(os.Getenv("KHAIII_APIKEY"), "")
 	text            = "사랑은 모든것을 덮어주고 모든것을 믿으며 모든것을 바라고 모든것을 견디어냅니다"
 )
 
